@@ -1,8 +1,21 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <h1>Hoang's Blog</h1>
-  <h3>My first Rails Application for Coderschool!</h3>
-  <%= render @articles %>
+  <div class="row">
+  <div class="col-sm-8">
+    <%= @articles.each do |article| %>
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title"><%= article.title %></h4>
+          <p class="card-text"><%= @markdown.render(article.body).html_safe%></p>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
+        </div>
+      </div>
+    <% end %>
+  </div>    
+</div>
   <br>
   <%= link_to 'New Article', new_article_path %>
 </div>
